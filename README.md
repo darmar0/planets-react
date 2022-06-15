@@ -30,12 +30,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ### Style
 
+- Please follow the design instructions found [here](https://share.goabstract.com/bed3c646-b615-4548-8a1c-adeb861473c8)
 - Create variables and mixins files
 - Try to use scss functions where needed
 - Use of Grid and Flexbox for layout
 - Use of Angular Material for components (optional)
-- You can use any google font you prefer
-- Design of the application is completely up to you.
 
 ### Logic
 
