@@ -1,0 +1,12 @@
+@import 'src/assets/shared/_mixins';
+@import 'src/assets/shared/_variables';
+@import 'src/assets/shared/_shared';
+
+.popup-container{
+  @include flex(column, center, center, 1rem, null);
+  mat-icon.mat-icon {
+    line-height: 6rem;
+    margin-right: 1.5rem;
+    color: $fontGray;
+  }
+}
