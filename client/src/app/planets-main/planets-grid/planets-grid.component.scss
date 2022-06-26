@@ -1,0 +1,48 @@
+@import 'src/assets/shared/_mixins';
+@import 'src/assets/shared/_variables';
+@import 'src/assets/shared/_shared';
+.planets-grid-wrapper{
+  height: 100%;
+  @include flex(row,center,center,null,null);
+}
+.planets-grid-container {
+  padding: 2rem;
+  //@include grid(250px, 350px, 20px);
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4,300px);
+
+  .planet {
+    padding: 1rem;
+    border-radius: 5px;
+    border: 1px solid rgba(221, 221, 221);
+    background-color: $header-background;
+    @include flex(column, space-between, center, 20px, wrap);
+
+
+    .planet-data {
+      @include flex(row, space-around, center, 10px, wrap);
+
+      &, h3 {
+        color: rgb(35, 35, 35);
+        line-height: 10px;
+
+        .data-item {
+          min-width: 250px;
+          @include flex(row, space-between, center, 50px, wrap);
+
+          .span {
+            border: 1px solid red !important;
+          }
+        }
+      }
+
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  planets-grid-container{
+    grid-template-columns: repeat(1,300px);
+  }
+}

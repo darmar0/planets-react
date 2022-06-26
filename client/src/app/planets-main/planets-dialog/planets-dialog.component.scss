@@ -1,0 +1,24 @@
+@import 'src/assets/shared/_mixins';
+@import 'src/assets/shared/_variables';
+@import 'src/assets/shared/_shared';
+.planets-form{
+  @include flex(column, flex-start, flex-start, null, null);
+  .full-width{
+    min-width: 450px;
+  }
+  .half-width{
+    min-width: 212px;
+  }
+  .form-row{
+    @include flex(row, center, center, null, null);
+  }
+}
+.dialog-btn{
+  @include flex(row, center, center, 5px, null);
+  .save-btn{
+    @include planets-btn($greenLight)
+  }
+  .delete-btn{
+    color: $fontGray;
+  }
+}

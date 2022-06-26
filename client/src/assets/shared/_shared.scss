@@ -1,0 +1,19 @@
+@import '_mixins';
+@import '_variables';
+
+.paragraph{
+  color: $fontGray;
+  font-size: 12px;
+  line-height: 12px;
+}
+
+.heading{
+  line-height: 12px;
+}
+
+.planets-header{
+  height: 3rem;
+  padding: 2rem;
+  background-color: $header-background;
+  @include flex(row, space-between, center, 0, wrap);
+}

@@ -1,0 +1,45 @@
+<div class="dialog-container">
+    <h2>Edit planet</h2>
+    <form [formGroup]="form" class="planets-form">
+        <mat-label>Name</mat-label>
+        <mat-form-field appearance="outline" floatLabel="never" class="full-width">
+            <input matInput formControlName="planetName" required>
+        </mat-form-field>
+        <mat-label>Description</mat-label>
+        <mat-form-field appearance="outline" floatLabel="never" class="full-width">
+            <textarea matInput formControlName="description" required rows="5"></textarea>
+        </mat-form-field>
+        <div class="form-row">
+            <span>
+            <mat-label>Radius in km</mat-label>
+            <mat-form-field appearance="outline" floatLabel="never" class="half-width">
+                <input matInput formControlName="radiusKm" required>
+            </mat-form-field>
+                </span>
+            <span>
+            <mat-label>Color</mat-label>
+            <mat-form-field appearance="outline" floatLabel="never" class="half-width">
+                <input matInput formControlName="planetColor" required>
+            </mat-form-field>
+                </span>
+        </div>
+        <div class="form-row">
+            <span>
+            <mat-label>Dist. from Sun</mat-label>
+            <mat-form-field appearance="outline" floatLabel="never" class="half-width">
+                <input matInput formControlName="distFromSun" required>
+            </mat-form-field>
+                </span>
+            <span style="margin-right: 10px">
+            <mat-label>Dist. from Earth</mat-label>
+            <mat-form-field appearance="outline" floatLabel="never" class="half-width">
+                <input matInput formControlName="distFromEarth" required>
+            </mat-form-field>
+                </span>
+        </div>
+    </form>
+    <div class="dialog-btn">
+        <button mat-flat-button class="save-btn" color="primary" (click)="saveChanges()">Confirm</button>
+        <button mat-flat-button  class="cancel-btn" >Cancel</button>
+    </div>
+</div>

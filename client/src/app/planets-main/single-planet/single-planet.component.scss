@@ -1,0 +1,73 @@
+@import 'src/assets/shared/_mixins';
+@import 'src/assets/shared/_variables';
+@import 'src/assets/shared/_shared';
+
+
+.planet-container {
+  background-color: $main-background;
+  height: 100%;
+
+  .edit-btn {
+    @include planets-btn($greenDark);
+    margin-right: 1rem;
+  }
+
+  .delete-btn {
+    @include planets-btn($blueDark)
+  }
+
+  .planet-info-grid {
+    padding: 2rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+
+    .box1 {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      grid-row-start: 1;
+      grid-row-end: 3;
+    }
+
+    .planet-info-box {
+      background-color: $header-background;
+      padding: 2rem;
+      @include flex(column, center, center, null, null);
+    }
+
+    .name-description {
+      //width: 600px;
+      //height: 300px;
+      background-color: $header-background;
+      @include flex(row, center, center, null, null);
+
+      .planet-avatar {
+        width: 200px;
+        height: 200px;
+        @include flex(row, center, center, null, null);
+      }
+
+      .description {
+        width: 300px;
+        @include flex(column, flex-start, flex-start, null, null);
+      }
+
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+
+  .planet-info-grid {
+    grid-template-columns: 1fr;
+    //.box1{
+    //  grid-row-start: 1;
+    //  grid-row-end: 1;
+    //}
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  planet-container {
+    background-color: red !important;
+  }
+}

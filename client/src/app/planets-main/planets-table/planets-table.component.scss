@@ -1,0 +1,33 @@
+@import 'src/assets/shared/_mixins';
+@import 'src/assets/shared/_variables';
+
+.planets-table-container {
+  padding: 2rem;
+  height: 100%;
+
+  table {
+    width: 100%;
+
+    .mat-cell-name {
+      @include flex(row, flex-start, center, 5px, wrap);
+      .cell-name-img {
+        @include flex(row, center, center, null, wrap);
+        width: 50px;
+        height: 50px;
+      }
+
+      .cell-name-data {
+        @include flex(column, flex-start, flex-start, null, wrap);
+
+        .desc {
+          color: $fontGray;
+          width: 350px;
+          @include overflow-ellipsis;
+
+        }
+      }
+    }
+
+  }
+}
+

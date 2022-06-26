@@ -25,7 +25,8 @@ app.use("/api/planets", planetRoutes.router);
 let server = null;
 
 server = app.listen(port, () => {
-  reloadPlanets(() => {
+  reloadPlanets((r) => {
+    console.log(r)
     console.log("Data initialized");
   });
   console.log("listening on port %s...", server.address().port);
