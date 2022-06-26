@@ -1,37 +1,49 @@
 @import 'src/assets/shared/_mixins';
 @import 'src/assets/shared/_variables';
 @import 'src/assets/shared/_shared';
+
 .planets-main {
   background-color: $main-background;
-   .header-tools {
-      .planets-icon{
-        color:$greenDark;
-      }
-      .btn-icon:focus {
-        background-color: $greenLight;
-        border-radius: 0;
-        .planets-icon{
-          color: rgba(32, 82, 105);
-        }
-      }
-      ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
-        height: 38px !important;
-        padding: 0 !important;
 
-        .mat-form-field-infix{
-          //align-items: center !important;
-          border-top: 0 !important;
-        }
-      }
+  .header-tools {
+    .planets-icon {
+      color: $greenDark;
+    }
 
-      @include flex(row, space-between, center, 1rem, wrap);
-      .create-btn-wrapper{
-        padding-top: 4px;
-      }
-      .planets-btn{
-        @include planets-btn($PurpleDark)
+    .btn-icon:focus {
+      background-color: $greenLight;
+      border-radius: 0;
+
+      .planets-icon {
+        color: rgba(32, 82, 105);
       }
     }
 
+    @include flex(row, space-between, flex-start, 1rem, null);
 
+    .create-btn-wrapper {
+      padding-top: 4px;
+    }
+
+    .planets-btn {
+      @include planets-btn($PurpleDark)
+    }
+  }
+
+
+}
+
+::ng-deep .mat-form-field:not(.mat-form-field-has-label) .mat-form-field-infix {
+  top: -0.9em;
+  left: 0.5em;
+}
+
+::ng-deep .mat-form-field:not(.mat-form-field-has-label) .mat-form-field-prefix {
+  top: -0.6em;
+  left: 0.5em;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+  height: 38px;
+  padding: 0 !important;
 }

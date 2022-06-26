@@ -10,25 +10,17 @@ import {map, takeUntil} from "rxjs/operators";
     templateUrl: './planets-grid.component.html',
     styleUrls: ['./planets-grid.component.scss']
 })
-export class PlanetsGridComponent implements OnInit, OnDestroy {
-    destroy$: Subject<boolean> = new Subject();
-    planets$: Observable<Planet[]>;
+export class PlanetsGridComponent implements OnInit {
     params;
-
+    @Input() planets: Planet[] = [];
     constructor(private service: PlanetsService,
                 private activated: ActivatedRoute,
                 private router: Router) {
     }
 
     ngOnInit(): void {
-        this.activated.queryParams.pipe(takeUntil(this.destroy$)).subscribe(params => {
-            this.planets$ = this.service.getPlanets(params);
-        });
     }
 
-    ngOnDestroy() {
-        this.destroy$.next(true);
-    }
     navigateTo(id){
         this.router.navigate([id]);
     }

@@ -1,19 +1,29 @@
 @import '_mixins';
 @import '_variables';
 
-.paragraph{
+.paragraph {
   color: $fontGray;
   font-size: 12px;
   line-height: 12px;
 }
 
-.heading{
+.heading {
   line-height: 12px;
 }
 
-.planets-header{
+.planets-header {
   height: 3rem;
   padding: 2rem;
   background-color: $header-background;
   @include flex(row, space-between, center, 0, wrap);
+}
+
+.dialog-btn {
+  @include flex(row, center, center, 5px, null);
+  .save-btn {
+    @include planets-btn($greenDark)
+  }
+  .delete-btn {
+    color: $fontGray;
+  }
 }

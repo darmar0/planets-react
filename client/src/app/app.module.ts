@@ -20,9 +20,10 @@ import {MatSortModule} from "@angular/material/sort";
 import { SinglePlanetComponent } from './planets-main/single-planet/single-planet.component';
 import { PlanetsDialogComponent } from './planets-main/planets-dialog/planets-dialog.component';
 import { MatDialogModule} from '@angular/material/dialog';
+import { PopUpDialogComponent } from './planets-main/pop-up-dialog/pop-up-dialog.component';
 
 @NgModule({
-    declarations: [AppComponent, PlanetsMainComponent, PlanetsGridComponent, PlanetsTableComponent, SinglePlanetComponent, PlanetsDialogComponent],
+    declarations: [AppComponent, PlanetsMainComponent, PlanetsGridComponent, PlanetsTableComponent, SinglePlanetComponent, PlanetsDialogComponent, PopUpDialogComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,

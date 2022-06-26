@@ -1,24 +1,47 @@
 @import 'src/assets/shared/_mixins';
 @import 'src/assets/shared/_variables';
 @import 'src/assets/shared/_shared';
-.planets-form{
+
+.photo-upload {
+  @include flex(row, space-between, center, null, null);
+  width: 450px;
+  margin-bottom: 1rem;
+  & button{
+    @include planets-btn($fontGray)
+  }
+}
+
+.planets-form {
   @include flex(column, flex-start, flex-start, null, null);
-  .full-width{
+   & mat-label{
+     color:$fontGray;
+   }
+  .full-width {
     min-width: 450px;
   }
-  .half-width{
+
+  .half-width {
     min-width: 212px;
   }
-  .form-row{
-    @include flex(row, center, center, null, null);
+
+  .form-row {
+    min-width: 450px;
+    @include flex(row,space-between, center, null, null);
   }
 }
-.dialog-btn{
-  @include flex(row, center, center, 5px, null);
-  .save-btn{
-    @include planets-btn($greenLight)
-  }
-  .delete-btn{
-    color: $fontGray;
-  }
+
+
+.mat-form-field:not(.mat-form-field-has-label) .mat-form-field-infix {
+  border-top-width: 0;
 }
+
+.mat-form-field-wrapper {
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.mat-form-field-label-wrapper {
+  padding-top: 0px;
+}
+

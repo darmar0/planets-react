@@ -17,18 +17,18 @@
                 <mat-icon class="planets-icon" matPrefix>search</mat-icon>
             </mat-form-field>
             <div class="create-btn-wrapper">
-                <button mat-flat-button class="planets-btn" color="primary">Create</button>
+                <button mat-flat-button class="planets-btn" color="primary" (click)="onCreatePlanet()">Create</button>
             </div>
 
         </div>
 
     </div>
-    <ng-container *ngIf="view === 'grid'">
-        <app-planets-grid ></app-planets-grid>
+    <ng-container *ngIf="view === 'grid'" >
+        <app-planets-grid [planets]="planets$ | async"></app-planets-grid>
 
     </ng-container>
-    <ng-container>
-        <app-planets-table *ngIf="view === 'table'"></app-planets-table>
+    <ng-container *ngIf="view === 'table'">
+        <app-planets-table [planets]="planets$ | async" ></app-planets-table>
 
     </ng-container>
 </div>

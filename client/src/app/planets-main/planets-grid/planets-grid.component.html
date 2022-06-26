@@ -1,6 +1,6 @@
 <div class="planets-grid-wrapper">
     <div class="planets-grid-container">
-        <div class="planet" *ngFor="let planet of (planets$ | async)" (click)="navigateTo(planet.id)">
+        <div class="planet" *ngFor="let planet of planets" (click)="navigateTo(planet.id)">
             <ngx-avatar src="{{planet.imageUrl}}"
                         value="{{planet.imageName}}"
                         size="90" [round]="true">

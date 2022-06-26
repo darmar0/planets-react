@@ -8,7 +8,7 @@ import {map} from 'rxjs/operators';
     providedIn: 'root'
 })
 export class PlanetsService {
-    api = '/api/planets';
+    api = '/api/planets/';
 
     constructor(private http: HttpClient) {
     }
@@ -22,11 +22,20 @@ export class PlanetsService {
     }
 
     getPlanet(id: string): Observable<Planet> {
-        return this.http.get<Planet>(this.api + '/' + id);
+        return this.http.get<Planet>(this.api + id);
     }
 
     editPlanet(id: number, payload): Observable<any> {
-        return this.http.put(this.api + '/' + id, payload);
+        console.log(payload)
+        return this.http.put(this.api + id, payload);
+    }
+
+    createPlanet(payload): Observable<Planet> {
+        return this.http.post<Planet>(this.api, payload);
+    }
+
+    deletePlanet(id: number): Observable<any> {
+        return this.http.delete(this.api + id);
     }
 
 
