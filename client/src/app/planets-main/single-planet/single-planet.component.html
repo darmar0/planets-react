@@ -9,7 +9,8 @@
     <div class="planet-info-grid" style="display:grid; gap:1rem">
         <div class="planet-info-box name-description box1">
             <ngx-avatar src="{{planet.imageUrl? planet.imageUrl : ''}}"
-                        value="{{planet.imageName}}"
+                        [name]="planet.imageName"
+                        textSizeRatio="2"
                         size="160" [round]="true"
                         class="planet-avatar">
             </ngx-avatar>

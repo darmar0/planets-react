@@ -2,7 +2,8 @@
     <div class="planets-grid-container">
         <div class="planet" *ngFor="let planet of planets" (click)="navigateTo(planet.id)">
             <ngx-avatar src="{{planet.imageUrl}}"
-                        value="{{planet.imageName}}"
+                        [name]="planet.imageName"
+                        textSizeRatio="2"
                         size="90" [round]="true">
             </ngx-avatar>
             <h1>{{planet.planetName}}</h1>

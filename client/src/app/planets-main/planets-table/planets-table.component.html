@@ -7,7 +7,8 @@
                 <div class="mat-cell-name">
                     <div class="cell-name-img">
                         <ngx-avatar src="{{element.imageUrl}}"
-                                    value="{{element.imageName}}"
+                                    [name]="element.imageName"
+                                    textSizeRatio="2"
                                     size="30" [round]="true">
                         </ngx-avatar>
                     </div>

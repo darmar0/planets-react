@@ -21,13 +21,6 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
 
-    .box1 {
-      grid-column-start: 1;
-      grid-column-end: 3;
-      grid-row-start: 1;
-      grid-row-end: 3;
-    }
-
     .planet-info-box {
       background-color: $header-background;
       padding: 2rem;
@@ -55,19 +48,5 @@
   }
 }
 
-@media screen and (max-width: 900px) {
 
-  .planet-info-grid {
-    grid-template-columns: 1fr;
-    //.box1{
-    //  grid-row-start: 1;
-    //  grid-row-end: 1;
-    //}
-  }
-}
 
-@media only screen and (max-width: 768px) {
-  planet-container {
-    background-color: red !important;
-  }
-}

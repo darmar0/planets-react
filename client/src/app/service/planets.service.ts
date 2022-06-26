@@ -26,7 +26,6 @@ export class PlanetsService {
     }
 
     editPlanet(id: number, payload): Observable<any> {
-        console.log(payload)
         return this.http.put(this.api + id, payload);
     }
 

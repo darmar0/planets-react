@@ -12,7 +12,7 @@ import {MatTableDataSource} from '@angular/material/table';
     templateUrl: './planets-table.component.html',
     styleUrls: ['./planets-table.component.scss']
 })
-export class PlanetsTableComponent implements OnInit {
+export class PlanetsTableComponent implements OnInit, OnDestroy {
     destroy$: Subject<boolean> = new Subject();
     params;
     dataSource: MatTableDataSource<Planet>;
@@ -36,12 +36,15 @@ export class PlanetsTableComponent implements OnInit {
             }
 
         });
-        this.activated.queryParams.pipe(takeUntil(this.destroy$)).subscribe(params => {
+        this.activated.queryParams.pipe(takeUntil(this.destroy$)).pipe(takeUntil(this.destroy$)).subscribe(params => {
             this.service.getPlanets(params).subscribe(r => {
                 this.dataSource = new MatTableDataSource(r);
             });
         });
 
+    }
+    ngOnDestroy() {
+        this.destroy$.next(true);
     }
 
     navigateTo(id) {

@@ -3,15 +3,15 @@
         <h1>Planets</h1>
         <div class="header-tools">
             <div class="btn-wrapper">
-                <button mat-icon-button class="btn-icon">
+                <button mat-icon-button [ngClass]="view === 'grid'  ? 'btn-view-active' : 'btn-view'">
                     <mat-icon class="planets-icon" style="font-size: 21px" (click)="changeView('grid')">grid_view</mat-icon>
                 </button>
-                <button mat-icon-button class="btn-icon" (click)="changeView('table')">
+                <button mat-icon-button [ngClass]="view === 'table'  ? 'btn-view-active' : 'btn-view'" (click)="changeView('table')">
                     <mat-icon class="planets-icon">view_list</mat-icon>
                 </button>
             </div>
 
-            <mat-form-field class="mat-form-field" appearance="outline" [formGroup]="searchForm" floatLabel="never">
+            <mat-form-field class="mat-form-field-search" appearance="outline" [formGroup]="searchForm" floatLabel="never">
                 <input  type="text" matInput formControlName="search"
                        placeholder="Search...">
                 <mat-icon class="planets-icon" matPrefix>search</mat-icon>
