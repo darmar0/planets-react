@@ -15,7 +15,7 @@
   height: 3rem;
   padding: 2rem;
   background-color: $header-background;
-  @include flex(row, space-between, center, 0, wrap);
+  @include flex(row, space-between, center, 0, null);
 }
 
 .dialog-btn {
@@ -26,4 +26,12 @@
   .delete-btn {
     color: $fontGray;
   }
+}
+
+@media only screen and (max-width: 620px) {
+    .planets-header {
+      height: 4rem;
+      @include flex(column, space-between, center, 0, null);
+    }
+
 }

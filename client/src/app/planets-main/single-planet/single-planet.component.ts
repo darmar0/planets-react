@@ -60,8 +60,7 @@ export class SinglePlanetComponent implements OnInit, OnDestroy {
     }
 
     editPlanet(val) {
-        this.service.editPlanet(this.activated.snapshot.params.id, val).subscribe(r=>
-        console.log(r));
+        this.service.editPlanet(this.activated.snapshot.params.id, val).subscribe();
         this.planet$ = this.service.getPlanet(this.activated.snapshot.params.id);
     }
 

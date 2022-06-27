@@ -1,13 +1,13 @@
-import {Component, OnDestroy, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
-import {PlanetsService} from "../service/planets.service";
-import {Observable, Subject} from "rxjs";
-import {Planet} from "../model/planet";
-import {debounceTime, filter, takeUntil, tap} from "rxjs/operators";
-import {ActivatedRoute, Route, Router} from "@angular/router";
-import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
-import {PlanetsDialogComponent} from "./planets-dialog/planets-dialog.component";
-import {PopUpDialogComponent} from "./pop-up-dialog/pop-up-dialog.component";
+import {PlanetsService} from '../service/planets.service';
+import {Observable, Subject} from 'rxjs';
+import {Planet} from '../model/planet';
+import {debounceTime, filter, takeUntil, tap} from 'rxjs/operators';
+import {ActivatedRoute, Router} from '@angular/router';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {PlanetsDialogComponent} from './planets-dialog/planets-dialog.component';
+import {PopUpDialogComponent} from './pop-up-dialog/pop-up-dialog.component';
 
 
 @Component({
@@ -20,7 +20,6 @@ export class PlanetsMainComponent implements OnInit, OnDestroy {
     view: string;
     params;
     planets$: Observable<Planet[]>;
-    @Output() planetsChanged = new EventEmitter();
 
     constructor(public fb: FormBuilder,
                 private service: PlanetsService,
@@ -78,19 +77,19 @@ export class PlanetsMainComponent implements OnInit, OnDestroy {
     }
 
     onCreatePlanet() {
-        this.dialog.open(PlanetsDialogComponent, <MatDialogConfig>{
+        this.dialog.open(PlanetsDialogComponent, {
             width: '500px',
-        }).afterClosed().pipe(
+        } as MatDialogConfig).afterClosed().pipe(
             filter(val => !!val),
             tap(val => this.confirmCreate(val))
         ).subscribe();
     }
 
     confirmCreate(val) {
-        this.dialog.open(PopUpDialogComponent, <MatDialogConfig>{
+        this.dialog.open(PopUpDialogComponent, {
             data: {mode: 'create', planet: val},
             width: '400px',
-        }).afterClosed().pipe(
+        } as MatDialogConfig).afterClosed().pipe(
             filter(res => !!res),
             tap(res => res ?
                 this.createPlanet(val) : null

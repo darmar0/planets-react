@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Planet} from '../model/planet';
 import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {map, shareReplay} from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +16,8 @@ export class PlanetsService {
     getPlanets(params): Observable<Planet[]> {
         return this.http.get<Planet[]>(this.api).pipe(
             map(planets => Object.keys(params).length >= 1 ? planets.filter(planet =>
-                planet.planetName.toLowerCase().includes(params.search.toLowerCase())) : planets)
+                planet.planetName.toLowerCase().includes(params.search.toLowerCase())) : planets),
+            shareReplay(1)
         );
 
     }

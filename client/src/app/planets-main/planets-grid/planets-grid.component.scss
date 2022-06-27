@@ -3,7 +3,6 @@
 @import 'src/assets/shared/_shared';
 
 .planets-grid-wrapper {
-  height: 100%;
   @include flex(row, center, center, null, null);
 }
 
@@ -20,22 +19,21 @@
     border: 1px solid rgba(221, 221, 221);
     background-color: $header-background;
     @include flex(column, space-between, center, 20px, wrap);
+    cursor: pointer;
 
 
     .planet-data {
-      @include flex(row, space-around, center, 10px, wrap);
-
+     @include flex(row, space-around, center, 10px, wrap);
+      & span{
+        width: 90px;
+      }
       &, h3 {
         color: rgb(35, 35, 35);
         line-height: 10px;
 
         .data-item {
-          min-width: 250px;
-          @include flex(row, space-between, center, 50px, wrap);
-
-          .span {
-            border: 1px solid red !important;
-          }
+          width: 100%;
+          @include flex(row, space-between, center, null, null);
         }
       }
 

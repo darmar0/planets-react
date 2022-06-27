@@ -3,7 +3,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Planet} from '../../model/planet';
 import {PlanetsService} from '../../service/planets.service';
-import {group} from "@angular/animations";
 
 @Component({
     selector: 'app-planets-dialog',
@@ -29,8 +28,6 @@ export class PlanetsDialogComponent implements OnInit {
             description: [planet?.description ?? '', Validators.required],
             planetRadiusKM: [planet?.planetRadiusKM ?? '', Validators.required],
             planetColor: [planet?.planetColor ?? '', Validators.required],
-            distFromSun: [planet?.distInMillionsKM.fromSun ?? '', Validators.required],
-            distFromEarth: [planet?.distInMillionsKM.fromEarth ?? '', Validators.required],
             imageUrl: [planet?.imageUrl],
             imageName: [planet?.imageName],
             distInMillionsKM: this.fb.group({
@@ -44,16 +41,17 @@ export class PlanetsDialogComponent implements OnInit {
     }
 
     saveChanges() {
-        const payload = this.form.value;
-        if (this.planet) {
-
-
-            this.dialogRef.close(payload);
-
+        if (this.form.valid) {
+            const payload = this.form.value;
+            if (this.planet) {
+                this.dialogRef.close(payload);
+            } else {
+                this.dialogRef.close(payload);
+            }
         } else {
-            this.dialogRef.close(payload);
-
+            this.form.markAllAsTouched();
         }
+
 
     }
 

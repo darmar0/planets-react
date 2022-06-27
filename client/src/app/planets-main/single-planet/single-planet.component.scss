@@ -21,6 +21,7 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
 
+
     .planet-info-box {
       background-color: $header-background;
       padding: 2rem;
@@ -28,10 +29,12 @@
     }
 
     .name-description {
-      //width: 600px;
-      //height: 300px;
+      grid-row-start: 1;
+      grid-row-end: 3;
+      grid-column-start: 1;
+      grid-column-end: 3;
       background-color: $header-background;
-      @include flex(row, center, center, null, null);
+      @include flex(row, center, center, 1rem, null);
 
       .planet-avatar {
         width: 200px;
@@ -46,6 +49,34 @@
 
     }
   }
+}
+
+@media only screen and (max-width: 900px) {
+  .planet-container {
+    .planet-info-grid {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+}
+
+@media only screen and (max-width: 450px) {
+  .planet-container {
+
+    .planet-info-grid {
+      grid-template-columns: repeat(1, 1fr);
+
+      .name-description {
+        @include flex(column, center, center, 1rem, null);
+
+        .description {
+          width: 300px;
+          @include flex(column, center, center, null, null);
+        }
+      }
+    }
+  }
+
 }
 
 

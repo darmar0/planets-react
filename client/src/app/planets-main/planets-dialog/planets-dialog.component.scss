@@ -45,3 +45,26 @@
   padding-top: 0px;
 }
 
+@media only screen and (max-width: 620px) {
+  .photo-upload {
+    width: 350px;
+
+  }
+  .planets-form {
+
+    .full-width {
+      min-width: 350px;
+    }
+
+    .half-width {
+      min-width: 350px;
+    }
+
+    .form-row {
+      min-width: 350px;
+      @include flex(column,space-between, center, null, null);
+    }
+  }
+
+}
+

@@ -7,9 +7,9 @@
 
   table {
     width: 100%;
-
     .mat-cell-name {
-      @include flex(row, flex-start, center, 5px, wrap);
+      @include flex(row, flex-start, center, 5px, null);
+
       .cell-name-img {
         @include flex(row, center, center, null, wrap);
         width: 50px;
@@ -31,3 +31,21 @@
   }
 }
 
+@media only screen and (max-width: 850px) {
+  .planets-table-container {
+    table {
+      .mat-cell-name {
+        .desc {
+          color: $fontGray;
+          width: 150px !important;
+          @include overflow-ellipsis;
+
+        }
+      }
+    }
+  }
+  .th {
+    max-width: 100px !important;
+  }
+
+}

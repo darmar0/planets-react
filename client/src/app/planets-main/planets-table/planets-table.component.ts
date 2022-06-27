@@ -17,8 +17,10 @@ export class PlanetsTableComponent implements OnInit, OnDestroy {
     params;
     dataSource: MatTableDataSource<Planet>;
     @ViewChild(MatSort) sort: MatSort;
-    @Input() planets: Planet[] = [];
-
+    @Input() set planets(planets: Planet[]) {
+                this.dataSource = new MatTableDataSource(planets);
+                this.dataSource.sort = this.sort;
+    }
     constructor(private service: PlanetsService,
                 private activated: ActivatedRoute,
                 private router: Router
@@ -29,20 +31,9 @@ export class PlanetsTableComponent implements OnInit, OnDestroy {
     displayedColumns: string[] = ['planetName', 'planetColor', 'planetRadiusKM', 'fromSun', 'fromEarth'];
 
     ngOnInit(): void {
-        setTimeout(() => {
-            if (this.planets) {
-                this.dataSource = new MatTableDataSource(this.planets);
-                this.dataSource.sort = this.sort;
-            }
-
-        });
-        this.activated.queryParams.pipe(takeUntil(this.destroy$)).pipe(takeUntil(this.destroy$)).subscribe(params => {
-            this.service.getPlanets(params).subscribe(r => {
-                this.dataSource = new MatTableDataSource(r);
-            });
-        });
 
     }
+
     ngOnDestroy() {
         this.destroy$.next(true);
     }

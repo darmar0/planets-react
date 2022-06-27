@@ -4,7 +4,10 @@
 
 .planets-main {
   background-color: $main-background;
-
+  min-height: 100%;
+    .mobile-wrapper{
+  display: none;
+}
   .header-tools {
     ::ng-deep .mat-form-field {
       font-size: 10px; // example
@@ -40,6 +43,17 @@
 
     .planets-btn {
       @include planets-btn($PurpleDark)
+    }
+  }
+
+
+}
+@media only screen and (max-width: 620px) {
+  .planets-main{
+    .header-tools {
+      .btn-wrapper{
+        display: none;
+      }
     }
   }
 
