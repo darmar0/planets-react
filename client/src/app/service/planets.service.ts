@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Planet} from '../model/planet';
 import {Observable} from 'rxjs';
-import {map, shareReplay} from 'rxjs/operators';
+import {debounceTime, map, shareReplay} from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'

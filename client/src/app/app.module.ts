@@ -21,9 +21,11 @@ import { SinglePlanetComponent } from './planets-main/single-planet/single-plane
 import { PlanetsDialogComponent } from './planets-main/planets-dialog/planets-dialog.component';
 import { MatDialogModule} from '@angular/material/dialog';
 import { PopUpDialogComponent } from './planets-main/pop-up-dialog/pop-up-dialog.component';
+import { LoadingComponent } from './loading/loading/loading.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
-    declarations: [AppComponent, PlanetsMainComponent, PlanetsGridComponent, PlanetsTableComponent, SinglePlanetComponent, PlanetsDialogComponent, PopUpDialogComponent],
+    declarations: [AppComponent, PlanetsMainComponent, PlanetsGridComponent, PlanetsTableComponent, SinglePlanetComponent, PlanetsDialogComponent, PopUpDialogComponent, LoadingComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -39,7 +41,8 @@ import { PopUpDialogComponent } from './planets-main/pop-up-dialog/pop-up-dialog
         AvatarModule,
         MatTableModule,
         MatSortModule,
-        MatDialogModule
+        MatDialogModule,
+        MatProgressSpinnerModule
     ],
     providers: [],
     bootstrap: [AppComponent],

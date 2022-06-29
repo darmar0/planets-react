@@ -17,10 +17,15 @@ export class PlanetsTableComponent implements OnInit, OnDestroy {
     params;
     dataSource: MatTableDataSource<Planet>;
     @ViewChild(MatSort) sort: MatSort;
+
     @Input() set planets(planets: Planet[]) {
-                this.dataSource = new MatTableDataSource(planets);
-                this.dataSource.sort = this.sort;
+        setTimeout(() => {
+            this.dataSource = new MatTableDataSource(planets);
+            this.dataSource.sort = this.sort;
+        });
+
     }
+
     constructor(private service: PlanetsService,
                 private activated: ActivatedRoute,
                 private router: Router

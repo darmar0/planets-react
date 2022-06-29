@@ -3,11 +3,12 @@ import {FormBuilder} from '@angular/forms';
 import {PlanetsService} from '../service/planets.service';
 import {Observable, Subject} from 'rxjs';
 import {Planet} from '../model/planet';
-import {debounceTime, filter, takeUntil, tap} from 'rxjs/operators';
+import {debounceTime, filter, finalize, takeUntil, tap} from 'rxjs/operators';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {PlanetsDialogComponent} from './planets-dialog/planets-dialog.component';
 import {PopUpDialogComponent} from './pop-up-dialog/pop-up-dialog.component';
+import {LoadingService} from '../loading/loading/loading.service';
 
 
 @Component({
@@ -25,7 +26,8 @@ export class PlanetsMainComponent implements OnInit, OnDestroy {
                 private service: PlanetsService,
                 private activated: ActivatedRoute,
                 private router: Router,
-                private dialog: MatDialog) {
+                private dialog: MatDialog,
+                private loadingService: LoadingService) {
     }
 
     searchForm = this.fb.group({
@@ -33,6 +35,7 @@ export class PlanetsMainComponent implements OnInit, OnDestroy {
     });
 
     ngOnInit(): void {
+        this.loadingService.loadingOn();
         this.view = 'grid';
         this.formSubsrcibe();
         this.activated.queryParams.pipe(takeUntil(this.destroy$)).subscribe(params => {
@@ -49,7 +52,8 @@ export class PlanetsMainComponent implements OnInit, OnDestroy {
     }
 
     loadPlanets(params) {
-        this.planets$ = this.service.getPlanets(params);
+        const loadingPlanets$ = this.service.getPlanets(params);
+        this.planets$ = this.loadingService.showLoaderUntilCompleted(loadingPlanets$);
     }
 
     formSubsrcibe() {

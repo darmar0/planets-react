@@ -6,7 +6,8 @@ import {Observable, Subject} from 'rxjs';
 import {Planet} from '../../model/planet';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {PlanetsDialogComponent} from '../planets-dialog/planets-dialog.component';
-import {PopUpDialogComponent} from "../pop-up-dialog/pop-up-dialog.component";
+import {PopUpDialogComponent} from '../pop-up-dialog/pop-up-dialog.component';
+import {LoadingService} from "../../loading/loading/loading.service";
 
 @Component({
     selector: 'app-single-planet',
@@ -21,7 +22,8 @@ export class SinglePlanetComponent implements OnInit, OnDestroy {
     constructor(private activated: ActivatedRoute,
                 private service: PlanetsService,
                 private dialog: MatDialog,
-                private router: Router) {
+                private router: Router,
+                private loadingService: LoadingService) {
     }
 
     ngOnInit(): void {
@@ -29,7 +31,8 @@ export class SinglePlanetComponent implements OnInit, OnDestroy {
     }
 
     loadPlanet() {
-        this.planet$ = this.service.getPlanet(this.activated.snapshot.params.id);
+        const loadingPlanet$ = this.service.getPlanet(this.activated.snapshot.params.id);
+        this.planet$ = this.loadingService.showLoaderUntilCompleted(loadingPlanet$);
 
     }
 
