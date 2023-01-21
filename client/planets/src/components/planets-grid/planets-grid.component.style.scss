@@ -2,8 +2,6 @@
 
 .planets-grid-wrapper {
   padding: 30px 30px 30px 30px;
-  min-height: 87.5vh;
-  background-color: rgba(235, 237, 239);
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(4, 1fr);

@@ -3,8 +3,11 @@
 .planets-header {
   //   height: 90px;
   padding: 15px 30px 15px 30px;
-  background-color: gba(255, 255, 255);
+  background-color: rgba(255, 255, 255) !important;
   @include flex(row, space-between, center, 0, wrap);
+  h1 {
+    cursor: pointer;
+  }
 }
 
 .header-menu {

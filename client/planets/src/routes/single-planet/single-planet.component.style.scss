@@ -1,0 +1,50 @@
+@import "../../shared/shared.style.scss";
+
+.single-planet-wrapper {
+  background-color: rgba(235, 237, 239);
+  padding: 40px 20px 20px 20px;
+  min-height: 80vh;
+
+  .planet-info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    .name-description {
+      background-color: rgba(255, 255, 255);
+      border-radius: 5px;
+      border: 1px solid #dddddd;
+      padding: 30px;
+      grid-row-start: 1;
+      grid-row-end: 3;
+      grid-column-start: 1;
+      grid-column-end: 3;
+      @include flex(row, center, center, 1rem, null);
+
+      .single-planet-img {
+        height: 200px;
+      }
+      span {
+        width: 65%;
+        text-align: justify;
+      }
+    }
+    .planet-info-box {
+      background-color: rgba(255, 255, 255);
+      border-radius: 5px;
+      border: 1px solid #dddddd;
+      padding: 30px;
+      text-align: center;
+      p {
+        color: gray;
+        font-size: 13px;
+      }
+    }
+  }
+
+  // .md {
+  //   max-width: 200px;
+  // }
+  // .sm {
+  //   max-width: 100px;
+  // }
+}

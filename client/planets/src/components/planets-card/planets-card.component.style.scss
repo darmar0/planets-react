@@ -1,6 +1,37 @@
+@import "../../shared/shared.style.scss";
+
 .planets-card-wrapper {
+  @include flex(column, space-between, center, 0, wrap);
   height: 450px;
-  width: 320px;
+  width: 300px;
   background-color: rgba(255, 255, 255) !important;
   border-radius: 4px;
+  text-align: center;
+  padding: 20px 20px 20px 20px;
+  overflow: hidden;
+  border: 1px solid #dddddd;
+  cursor: pointer;
+  &:hover {
+    border: 1px solid gray;
+  }
+  .planet-img {
+    width: 100px;
+  }
+  .planet-desc {
+    color: gray;
+    font-size: 13px;
+    text-align: start;
+  }
+  .planet-info {
+    @include flex(row, space-between, center, 0, wrap);
+    line-height: 5px;
+    // border: 1px solid red;
+    .info-l {
+      width: 150px;
+      text-align: left;
+    }
+    .info-r {
+      text-align: right;
+    }
+  }
 }
