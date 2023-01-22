@@ -1,39 +1,36 @@
 import { useState, useEffect } from "react";
 
 const useAxios = (configObj) => {
-  const { axiosInstance, method, url, requestConfig } = configObj;
-
   const [responce, setResponce] = useState([]);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [controller, setController] = useState();
+
+  const axiosFetch = async (configObj) => {
+    const { axiosInstance, method, url, data } = configObj;
+    try {
+      setLoading(true);
+      const ctrl = new AbortController();
+      setController(ctrl);
+      const res = await axiosInstance[method.toLowerCase()](url, {
+        ...data,
+        // signal: ctrl.signal,
+      });
+      console.log(res);
+      setResponce(res.data);
+      setError("");
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const controller = new AbortController();
+    return () => controller && controller.abort();
+  }, [controller]);
 
-    const fetchData = async () => {
-      try {
-        const res = await axiosInstance[method.toLowerCase()](url, {
-          ...requestConfig,
-          signal: controller.signal,
-        });
-        console.log(res);
-        setResponce(res.data);
-      } catch (err) {
-        if (err?.code == "ERR_CANCELED") {
-          setError(false);
-        } else {
-          setError(err.message);
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-    return () => controller.abort();
-  }, []);
-
-  return [responce, error, loading];
+  return [responce, error, loading, axiosFetch];
 };
 
 export default useAxios;

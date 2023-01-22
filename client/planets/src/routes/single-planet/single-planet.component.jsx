@@ -2,14 +2,21 @@ import "./single-planet.component.style.scss";
 import { useParams } from "react-router-dom";
 import useAxios from "../../service/axios/useAxios.service";
 import axios from "../../service/axios/planets.api";
+import { useEffect } from "react";
 
 const SinglePlanet = () => {
   const { id } = useParams();
-  const [planet, error, loading] = useAxios({
-    axiosInstance: axios,
-    method: "GET",
-    url: `/${id}`,
-  });
+  const [planet, error, loading, axiosFetch] = useAxios();
+  const getPlanets = () => {
+    axiosFetch({
+      axiosInstance: axios,
+      method: "GET",
+      url: `/${id}`,
+    });
+  };
+  useEffect(() => {
+    getPlanets();
+  }, []);
   return (
     <div className="single-planet-wrapper">
       {loading && <p>loading</p>}

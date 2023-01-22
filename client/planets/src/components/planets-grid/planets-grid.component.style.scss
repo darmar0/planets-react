@@ -2,7 +2,8 @@
 
 .planets-grid-wrapper {
   padding: 30px 30px 30px 30px;
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(4, 1fr);
+  // display: grid;
+  // gap: 1rem;
+  // grid-template-columns: repeat(5, 1fr);
+  @include flex(row, flex-start, center, 1rem, wrap);
 }

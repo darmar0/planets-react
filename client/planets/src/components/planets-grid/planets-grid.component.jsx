@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import { useSearchParams, useParams } from "react-router-dom";
+
 import PlanetsCard from "../planets-card/planets-card.component";
 import "./planets-grid.component.style.scss";
 
