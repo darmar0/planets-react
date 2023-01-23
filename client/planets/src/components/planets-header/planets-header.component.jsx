@@ -68,7 +68,12 @@ const PlanetsHeader = () => {
           </div>
         ) : (
           <Box sx={{ "& button": { m: 1 } }}>
-            <Button size="small" variant="contained" color="secondary">
+            <Button
+              size="small"
+              variant="contained"
+              color="secondary"
+              onClick={handleOpen}
+            >
               Edit
             </Button>
             <Button size="small" variant="contained" onClick={deltePlanet}>

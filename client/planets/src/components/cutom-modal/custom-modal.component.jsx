@@ -1,12 +1,14 @@
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useForm } from "react-hook-form";
 import "./custom-modal.component.style.scss";
 import Button from "@mui/material/Button";
 import useAxios from "../../service/axios/useAxios.service";
 import axios from "../../service/axios/planets.api";
-import { useState } from "react";
+import { useContext } from "react";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { PlanetContext } from "../../service/context/planet.context";
 
 const style = {
   position: "absolute",
@@ -21,30 +23,31 @@ const style = {
 };
 
 export const CustomModal = ({ open, onClose }) => {
+  const { planetContext } = useContext(PlanetContext);
   const {
     register,
     handleSubmit,
-    watch,
+    reset,
     formState: { errors },
   } = useForm();
-  const [newPlanet, setNewPlanet] = useState();
-  const [planets, error, loading, axiosFetch] = useAxios();
-
+  const [planet, error, loading, axiosFetch] = useAxios();
+  const { id } = useParams();
   const onSubmit = (data) => {
     axiosFetch({
       axiosInstance: axios,
-      method: "POST",
-      url: "/",
+      method: id ? "PUT" : "POST",
+      url: id ? `${id}` : "/",
       data: data,
     });
-    axiosFetch({
-      axiosInstance: axios,
-      method: "GET",
-      url: "/",
-    });
-    onClose();
-  };
 
+    onClose();
+    reset({});
+  };
+  useEffect(() => {
+    if (id) {
+      reset(planetContext);
+    }
+  }, [reset, planetContext]);
   return (
     <Modal
       open={open}
@@ -64,13 +67,22 @@ export const CustomModal = ({ open, onClose }) => {
               pattern: /^[A-Za-z]+$/i,
             })}
           />
+          {errors?.planetName?.type === "required" && (
+            <p>This field is required</p>
+          )}
+          {errors?.planetName?.type === "maxLength" && (
+            <p>First name cannot exceed 20 characters</p>
+          )}
+          {errors?.planetName?.type === "pattern" && (
+            <p>Alphabetical characters only</p>
+          )}
           <label>Description</label>
           <textarea
             rows="4"
             cols="50"
             {...register("description", {
               required: true,
-              maxLength: 50,
+              //   maxLength: 300,
               pattern: /^[A-Za-z]+$/i,
             })}
           />
@@ -121,7 +133,7 @@ export const CustomModal = ({ open, onClose }) => {
           </div>
           <div className="btn-group">
             <Button type="submit" variant="contained" color="primary">
-              Create
+              {id ? "Confirm" : "Create"}
             </Button>
             <Button onClick={onClose}>Cancel</Button>
           </div>

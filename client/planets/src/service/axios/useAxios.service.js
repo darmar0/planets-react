@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { PlanetContext } from "../context/planet.context";
 
 const useAxios = (configObj) => {
-  const [responce, setResponce] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [controller, setController] = useState();
+
+  const { setPlanetContext, setPlanetsContext } = useContext(PlanetContext);
 
   const axiosFetch = async (configObj) => {
     const { axiosInstance, method, url, data } = configObj;
@@ -16,8 +18,13 @@ const useAxios = (configObj) => {
         ...data,
         // signal: ctrl.signal,
       });
-      console.log(res);
-      setResponce(res.data);
+      let dataRes = res.data;
+      if (dataRes.length) {
+        setPlanetsContext(dataRes);
+      } else {
+        setPlanetContext(dataRes);
+      }
+
       setError("");
     } catch (err) {
       setError(err.message);
@@ -30,7 +37,7 @@ const useAxios = (configObj) => {
     return () => controller && controller.abort();
   }, [controller]);
 
-  return [responce, error, loading, axiosFetch];
+  return [error, loading, axiosFetch];
 };
 
 export default useAxios;

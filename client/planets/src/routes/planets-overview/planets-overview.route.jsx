@@ -6,12 +6,14 @@ import PlanetsGrid from "../../components/planets-grid/planets-grid.component";
 import PlanetsTable from "../../components/planets-table/planets-table.component";
 import "./planets-overview.route.style.scss";
 import { useSearchParams } from "react-router-dom";
+import { PlanetContext } from "../../service/context/planet.context";
 
 const PlanetsOverview = () => {
   const { view } = useContext(ViewContext);
   const [searchParams] = useSearchParams();
   let param = searchParams.get("search");
-  const [planets, error, loading, axiosFetch] = useAxios();
+  const { planetsContext } = useContext(PlanetContext);
+  const [error, loading, axiosFetch] = useAxios();
   const getPlanets = () => {
     axiosFetch({
       axiosInstance: axios,
@@ -35,12 +37,12 @@ const PlanetsOverview = () => {
     <div className="planets-overview-wraper">
       {loading && <p>loading</p>}
       {!loading && error && <p>{error}</p>}
-      {!loading && !error && planets && view === "grid" ? (
-        <PlanetsGrid planets={filterPlanets(planets)}></PlanetsGrid>
+      {!loading && !error && planetsContext && view === "grid" ? (
+        <PlanetsGrid planets={filterPlanets(planetsContext)}></PlanetsGrid>
       ) : (
-        <PlanetsTable planets={filterPlanets(planets)}></PlanetsTable>
+        <PlanetsTable planets={filterPlanets(planetsContext)}></PlanetsTable>
       )}
-      {!loading && !error && !planets && <p>No planets to display</p>}
+      {!loading && !error && !planetsContext && <p>No planets to display</p>}
     </div>
   );
 };
